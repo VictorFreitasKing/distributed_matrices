@@ -10,5 +10,5 @@ def archive(name, num_rows, num_columns, time, cpus, matrix:numpy.ndarray):
 
     for i in range(matrix.shape[0]):
         for j in range(matrix.shape[1]):
-            arq.write(matrix[i][j] + ' ')
+            arq.write(str(matrix[i][j]) + ' ')
         arq.write('\n')
