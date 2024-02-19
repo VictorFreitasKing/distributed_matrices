@@ -15,3 +15,14 @@
 # Termina Contagem de TEMPO
 
 # Escreve arquivo de saída.
+
+
+'''
+UFRPE - Universidade Federal Rural de Pernambuco
+UAST - Unidade Acadêmicas de Serra Talhada
+
+Alunos: José Victor de Freitas Nunes
+        Julio Costa
+
+Bibliotecas utilizadas: numpy
+'''
