@@ -1,14 +1,16 @@
 import numpy
 
-def archive(name, num_rows, num_columns, time, cpus, matrix:numpy.ndarray):
+def archive(name, var, colors, clients, rows, columns, time, matrix_response:numpy.ndarray):
     with open(name, 'w+') as arq:
-        arq.archive(name)
-        arq.archive(num_rows)
-        arq.archive(num_columns)
-        arq.archive(time)
-        arq.archive(cpus)
+        arq.archive(var)            #l1
+        arq.archive(colors)         #l2
+        arq.archive(clients)        #l3
+        arq.archive(rows)           #l4
+        arq.archive(columns)        #l5
+        arq.archive(time)           #l6
+        arq.archive('\n')           #l7
 
-    for i in range(matrix.shape[0]):
-        for j in range(matrix.shape[1]):
-            arq.write(str(matrix[i][j]) + ' ')
+    for i in range(matrix_response.shape[0]):
+        for j in range(matrix_response.shape[1]):
+            arq.write(str(matrix_response[i][j]) + ' ')
         arq.write('\n')

@@ -20,12 +20,14 @@ Bibliotecas utilizadas: numpy - biblioteca usada para trabalhar com arrays de fo
 ----------->matriz
 
 -> Carrega arquivo com a matriz a ser multiplicada
-------> Carrega matriz a partir de arquivo - OK
-------> Multiplica matriz
+------> Carrega matriz a partir de arquivo
 
 -> Inicia Contagem de TEMPO
 
 -> Chama função de multiplicação (remota e ou local) - Utilizar Pool para dividir  os processos
+------> Multiplica  matriz
+----------> Pega Linhas
+----------> Pega Colunas
 
 -> Termina Multiplicação (retorna todos os resultados)
 
