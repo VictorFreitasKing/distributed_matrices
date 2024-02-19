@@ -1,6 +1,4 @@
-from multiprocessing import Process
+from multiprocessing import cpu_count, Pool
 import time
+import archive
 
-p = Process(target=print, args=[1])
-
-p.run()
