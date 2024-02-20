@@ -30,3 +30,11 @@ def multiply(X: numpy.ndarray, Y: numpy.ndarray):
 
     matrix_to_numpy(matrix, matrix1)
     matrix_to_numpy(matrix, matrix2)
+
+    before = time.time()
+    matrix_result = multiply(matrix1, matrix2)
+    after = time.time()
+    runtime = after - before
+
+    print(matrix_result)
+    print(f'Tempo de execução: {runtime} ms')
