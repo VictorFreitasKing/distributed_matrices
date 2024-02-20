@@ -8,6 +8,6 @@ def start():
         print(f'Client conectado!')
         strg = ''
         while True:
-            strg+= ' '
+            strg += ' '
 
 Process(target=start()).start()

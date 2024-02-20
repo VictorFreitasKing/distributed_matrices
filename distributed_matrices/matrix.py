@@ -1,9 +1,11 @@
+import numpy
+
 class Matrix:
-    def __init__(self, m, n):
-        self.rows = m
-        self.columns = n
+    def __init__(self, rows, columns):
+        self.rows = rows
+        self.columns = columns
         self.matrix = []
-        self.__create()
+        self.__createMatrix()
 
     def __createMatrix(self):
         for i in range(self.columns):
@@ -39,3 +41,8 @@ class Matrix:
                 #column[j].append()
             i+=int(self.columns/i)
         return column
+
+def to_numpy_array(Matrix: Matrix, npMatrix: numpy.array):
+    for i in range(Matrix.columns):
+        for j in range(Matrix.rows):
+            npMatrix[i][j] = Matrix.matrix[i][j]
