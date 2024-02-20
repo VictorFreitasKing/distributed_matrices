@@ -5,9 +5,9 @@ def start():
     client_socket = socket(AF_INET, SOCK_STREAM)
     with client_socket as cs:
         cs.connect(('localhost', 65432))
-        print(f'Client conectado!')
-        strg = ''
         while True:
-            strg += ' '
+            index = cs.recv(1024).decode()
+            file = cs.recv(1024)
+            print(f'Client conectado!')
 
 Process(target=start()).start()

@@ -38,11 +38,20 @@ class Matrix:
         for j in range(x):
             column.append([])
             for h in range (int(self.columns/i)):
-                #column[j].append()
+                column[j].append()
             i+=int(self.columns/i)
         return column
 
-def to_numpy_array(Matrix: Matrix, npMatrix: numpy.array):
+def matrix_to_numpy(Matrix: Matrix, npMatrix: numpy.array):
     for i in range(Matrix.columns):
         for j in range(Matrix.rows):
             npMatrix[i][j] = Matrix.matrix[i][j]
+
+def get_matrix(rows):
+    length = rows[0].split(' ')
+    matrix = Matrix(int(length), int(length))
+    for i in range(1, int(length) + 1):
+        row = rows[i].strip().split(' ')
+        for j in range(len(row)):
+            matrix.matrix[i-1][j] = float(row[j])
+    return matrix

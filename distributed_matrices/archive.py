@@ -1,4 +1,5 @@
 import numpy
+from matrix import Matrix
 
 def archive(name, var, colors, clients, rows, columns, time, matrix_response:numpy.ndarray):
     with open(name, 'w+') as arq:
@@ -14,3 +15,8 @@ def archive(name, var, colors, clients, rows, columns, time, matrix_response:num
         for j in range(matrix_response.shape[1]):
             arq.write(str(matrix_response[i][j]) + ' ')
         arq.write('\n')
+
+def get_rows_from(path):
+    with open(path) as arq:
+        rows = arq.readlines()
+    return rows
