@@ -1,5 +1,5 @@
 from socket import socket, AF_INET, SOCK_STREAM
-from threading import Thread, Lock
+from multiprocessing import Process
 
 
 curret_target = 0
@@ -28,4 +28,4 @@ def start():
                 break
 
 
-Thread(target=start()).start()
+Process(target=start()).start()

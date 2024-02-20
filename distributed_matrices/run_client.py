@@ -1,5 +1,5 @@
 from socket import socket, AF_INET, SOCK_STREAM
-from threading import Thread
+from multiprocessing import Process
 
 def start():
     client_socket = socket(AF_INET, SOCK_STREAM)
@@ -10,4 +10,4 @@ def start():
         while True:
             strg+= ' '
 
-Thread(target=start()).start()
+Process(target=start()).start()
