@@ -22,26 +22,6 @@ class Matrix:
             matrix_str += ']\n'
         return matrix_str
 
-    def get_row(self, x):
-        row = []
-        i = 0
-        for j in range(x):
-            row.append([])
-            for h in range (int(self.columns/i)):
-                row.append(self.matrix[i][:])
-            i+=1
-        return row
-
-    def get_column(self, x):
-        column = []
-        i = 0
-        for j in range(x):
-            column.append([])
-            for h in range (int(self.columns/i)):
-                column[j].append()
-            i+=int(self.columns/i)
-        return column
-
 def matrix_to_numpy(Matrix: Matrix, npMatrix: numpy.array):
     for i in range(Matrix.columns):
         for j in range(Matrix.rows):

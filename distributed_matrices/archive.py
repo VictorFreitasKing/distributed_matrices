@@ -1,5 +1,4 @@
 import numpy
-from matrix import Matrix
 
 def archive(name, var, colors, clients, rows, columns, time, matrix_response:numpy.ndarray):
     with open(name, 'w+') as arq:
