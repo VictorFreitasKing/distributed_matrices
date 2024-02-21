@@ -3,6 +3,7 @@ from multiprocessing import Process
 import p1
 
 def start():
+    process = p1
     client_socket = socket(AF_INET, SOCK_STREAM)
     with client_socket as cs:
         cs.connect(('localhost', 65432))
