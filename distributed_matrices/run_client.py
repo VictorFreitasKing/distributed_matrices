@@ -1,5 +1,6 @@
 from socket import socket, AF_INET, SOCK_STREAM
 from multiprocessing import Process
+import p1
 
 def start():
     client_socket = socket(AF_INET, SOCK_STREAM)
@@ -9,5 +10,6 @@ def start():
             index = cs.recv(1024).decode()
             file = cs.recv(1024)
             print(f'Client conectado!')
+
 
 Process(target=start()).start()

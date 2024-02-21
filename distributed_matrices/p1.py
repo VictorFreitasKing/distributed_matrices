@@ -1,5 +1,5 @@
 import time, numpy
-from  multiprocessing import cpu_count
+from multiprocessing import cpu_count
 from archive import archive, get_rows_from
 from matrix import matrix_to_numpy, get_matrix
 
@@ -22,23 +22,23 @@ def multiply(X: numpy.ndarray, Y: numpy.ndarray):
 
     return resultado
 
-    path = 'resources/4_int.txt'
-    matrix = get_matrix(get_rows_from(path))
-    num_cores = cpu_count
+path = 'resources/4_int.txt'
+matrix = get_matrix(get_rows_from(path))
+num_cores = cpu_count
 
-    matrix1 = numpy.zeros((matrix.columns,matrix.columns))
-    matrix2 = numpy.zeros((matrix.columns,matrix.columns))
+matrix1 = numpy.zeros((matrix.columns,matrix.columns))
+matrix2 = numpy.zeros((matrix.columns,matrix.columns))
 
-    matrix_to_numpy(matrix, matrix1)
-    matrix_to_numpy(matrix, matrix2)
+matrix_to_numpy(matrix, matrix1)
+matrix_to_numpy(matrix, matrix2)
 
-    before = time.time()
-    matrix_result = multiply(matrix1, matrix2)
-    after = time.time()
-    runtime = after - before
+before = time.time()
+matrix_result = multiply(matrix1, matrix2)
+after = time.time()
+runtime = after - before
 
-    archive('resources/results/p1', 'P1\n', f'Numero de cores: {num_cores}\n',
-      f'Numero de clientes: {1}\n',
-      f'Numero de linhas: {matrix_result.shape[0]}\n', f'Numero de colunas: {matrix_result.shape[1]}\n',
-      f'Tempo de processamento: {runtime} segundos\n', matrix_result)
+archive('resources/results/p1', 'P1\n', f'Numero de cores: {num_cores}\n',
+    f'Numero de clientes: {1}\n',
+    f'Numero de linhas: {matrix_result.shape[0]}\n', f'Numero de colunas: {matrix_result.shape[1]}\n',
+    f'Tempo de processamento: {runtime} segundos\n', matrix_result)
 
