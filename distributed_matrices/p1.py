@@ -40,5 +40,5 @@ def multiply(X: numpy.ndarray, Y: numpy.ndarray):
     archive('resources/results/p1', 'P1\n', f'Numero de cores: {num_cores}\n',
       f'Numero de clientes: {1}\n',
       f'Numero de linhas: {matrix_result.shape[0]}\n', f'Numero de colunas: {matrix_result.shape[1]}\n',
-      f'Tempo de processamento: {runtime} segundos\n', matrix_result))
+      f'Tempo de processamento: {runtime} segundos\n', matrix_result)
 
