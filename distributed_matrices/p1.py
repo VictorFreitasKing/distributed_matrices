@@ -24,7 +24,7 @@ def multiply(X: numpy.ndarray, Y: numpy.ndarray):
 
     path = 'resources/4_int.txt'
     matrix = get_matrix(get_rows_from(path))
-    cpus = cpu_count
+    num_cores = cpu_count
 
     matrix1 = numpy.zeros((matrix.columns,matrix.columns))
     matrix2 = numpy.zeros((matrix.columns,matrix.columns))
@@ -37,8 +37,8 @@ def multiply(X: numpy.ndarray, Y: numpy.ndarray):
     after = time.time()
     runtime = after - before
 
-    archive('resources/results/p1', 'Solução p1 feita com abordagem tradicional O(3)\n', f'Num cores: {num_cpu_cores}\n',
-      f'Num cliente: {0}\n',
-      f'Num linhas: {final_matrix.shape[0]}\n', f'Num colunas: {final_matrix.shape[1]}\n',
-      f'Tempo para multiplicar e juntar: {total_time} segundos\n', final_matrix))
+    archive('resources/results/p1', 'P1\n', f'Numero de cores: {num_cores}\n',
+      f'Numero de clientes: {1}\n',
+      f'Numero de linhas: {matrix_result.shape[0]}\n', f'Numero de colunas: {matrix_result.shape[1]}\n',
+      f'Tempo de processamento: {runtime} segundos\n', matrix_result))
 
