@@ -20,31 +20,28 @@ def multiply(X: numpy.ndarray, Y: numpy.ndarray):
 
     return resultado
 
+if __name__ == '__main__':
+    path = 'resources/10_float.txt'
+    resultPath = 'resources/results/p1_teste'
+    matrix = get_matrix(get_rows_from(path))
 
-path = 'resources/128.txt'
-resultPath = 'resources/results/p1_teste'
-matrix = get_matrix(get_rows_from(path))
+    matrix1 = numpy.zeros((matrix.rows,matrix.columns))
+    matrix2 = numpy.zeros((matrix.rows,matrix.columns))
 
-print(matrix)
+    matrix_to_numpy(matrix, matrix1)
+    matrix_to_numpy(matrix, matrix2)
 
-matrix1 = numpy.zeros((matrix.rows,matrix.columns))
-matrix2 = numpy.zeros((matrix.rows,matrix.columns))
+    before = time.time()
+    matrix_result = multiply(matrix1, matrix2)
+    after = time.time()
+    runtime = (after - before) * 1000
 
-matrix_to_numpy(matrix, matrix1)
-matrix_to_numpy(matrix, matrix2)
+    archive(resultPath, 'P1\n',
+        f'Numero de cores: {cpu_count()}\n',
+        f'Numero de computadores remotos: {0}\n',
+        f'Numero de linhas: {matrix_result.shape[0]}\n',
+        f'Numero de colunas: {matrix_result.shape[1]}\n',
+        f'Tempo de processamento: {runtime} ms\n',
+        matrix_result)
 
-before = time.time()
-matrix_result = multiply(matrix1, matrix2)
-after = time.time()
-runtime = (after - before) * 1000
-print(runtime)
-
-
-print(matrix_result)
-
-archive(resultPath, 'P1\n', f'Numero de cores: {cpu_count()}\n',
-    f'Numero de clientes: {1}\n',
-    f'Numero de linhas: {matrix_result.shape[0]}\n', f'Numero de colunas: {matrix_result.shape[1]}\n',
-    f'Tempo de processamento: {runtime} ms\n', matrix_result)
-
-print('Finalizado')
+    print('\nProcesso Finalizado')

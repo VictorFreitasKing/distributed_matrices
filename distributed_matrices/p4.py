@@ -24,9 +24,9 @@ def multiply(matrices: tuple)-> numpy.ndarray:
 
 if __name__ == '__main__':
     path = 'resources/10_float.txt'
-    resultPath = 'resources/results/p2_teste'
+    resultPath = 'resources/results/p4_teste'
     num_cores = cpu_count()
-    num_threads = num_cores
+    num_threads = int(num_cores/2)
 
     matrix = get_matrix(get_rows_from(path))
     matrix1 = numpy.zeros((matrix.rows,matrix.columns))
@@ -58,7 +58,7 @@ if __name__ == '__main__':
         runtime = (after - before) * 1000
 
     archive(resultPath,
-        'P2\n',
+        'P3\n',
         f'Numero de cores: {num_cores}\n',
         f'Numero de computadores remotos: {0}\n',
         f'Numero de linhas: {matrix_result.shape[0]}\n',
