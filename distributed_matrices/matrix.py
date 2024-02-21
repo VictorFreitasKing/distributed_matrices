@@ -28,9 +28,9 @@ def matrix_to_numpy(Matrix: Matrix, npMatrix: numpy.array):
             npMatrix[i][j] = Matrix.matrix[i][j]
 
 def get_matrix(rows):
-    length = rows[0].split(' ')
-    matrix = Matrix(int(length), int(length))
-    for i in range(1, int(length) + 1):
+    rowslength, columnslength = rows[0].split(' ')
+    matrix = Matrix(int(rowslength), int(columnslength))
+    for i in range(1, int(rowslength) + 1):
         row = rows[i].strip().split(' ')
         for j in range(len(row)):
             matrix.matrix[i-1][j] = float(row[j])

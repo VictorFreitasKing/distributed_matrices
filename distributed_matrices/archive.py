@@ -14,6 +14,7 @@ def archive(name, var, colors, clients, rows, columns, time, matrix_response:num
         for j in range(matrix_response.shape[1]):
             arq.write(str(matrix_response[i][j]) + ' ')
         arq.write('\n')
+        arq.close()
 
 def get_rows_from(path):
     with open(path) as arq:
