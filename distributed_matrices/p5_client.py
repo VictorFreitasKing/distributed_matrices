@@ -2,9 +2,11 @@ from socket import socket, AF_INET, SOCK_STREAM
 from multiprocessing import Process
 import pickle, numpy
 
-def multiply(X: numpy.ndarray, Y: numpy.ndarray):
+def multiply(matrices: tuple)-> numpy.ndarray:
+    X = matrices[0]
+    Y = matrices[1]
     columnsX = X.shape[0]
-    #rowsX = X.shape[1]
+    rowsX = X.shape[1]
     columnsY = Y.shape[0]
     rowsY = Y.shape[1]
 
