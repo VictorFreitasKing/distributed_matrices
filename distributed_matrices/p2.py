@@ -1,17 +1,16 @@
 import time, numpy
-from multiprocessing import cpu_count
+from multiprocessing import cpu_count, pool
 from archive import archive, get_rows_from
 from matrix import matrix_to_numpy, get_matrix
 
-def multiply(X: numpy.ndarray, Y: numpy.ndarray):
-    columnsX = X.shape[0]
-    rowsX = X.shape[1]
-    columnsY = Y.shape[0]
-    rowsY = Y.shape[1]
+def multiply(matrices: tuple):
+    columnsX = matrices[0].shape[0]
+    rowsX = matrices[0].shape[1]
+    columnsY = matrices[1].shape[0]
+    rowsY = matrices[1].shape[1]
 
     if rowsX != columnsY:
-        print('Erro! A matriz não é quadrada.')
-        return None
+        raise 'Erro! A matriz não é quadrada.'
 
     resultado = numpy.zeros((columnsX, rowsY))
     for i in range(columnsX):
@@ -26,6 +25,7 @@ path = 'resources/128.txt'
 result = 'resources/results/p1_teste'
 matrix = get_matrix(get_rows_from(path))
 num_cores = cpu_count
+num_threads = num_cores
 
 print(matrix)
 
@@ -35,11 +35,20 @@ matrix2 = numpy.zeros((matrix.rows,matrix.columns))
 matrix_to_numpy(matrix, matrix1)
 matrix_to_numpy(matrix, matrix2)
 
+matrixRows = numpy.array_split(matrix1, num_threads, axis=0)
+
+pieces = []
+for i, row in enumerate(matrixRows):
+    pieces.append((row, matrix2, i))
+
+with Pool
+
 before = time.time()
 matrix_result = multiply(matrix1, matrix2)
 after = time.time()
 runtime = (after - before) * 1000
 print(runtime)
+
 
 
 print(matrix_result)

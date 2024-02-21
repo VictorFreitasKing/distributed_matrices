@@ -9,8 +9,7 @@ def multiply(X: numpy.ndarray, Y: numpy.ndarray):
     rowsY = Y.shape[1]
 
     if rowsX != columnsY:
-        print('Erro! A matriz não é quadrada.')
-        return None
+        raise 'Erro! A matriz não é quadrada.'
 
     resultado = numpy.zeros((columnsX, rowsY))
     for i in range(columnsX):
