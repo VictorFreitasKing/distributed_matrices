@@ -1,0 +1,7 @@
+P1
+Numero de cores: <bound method BaseContext.cpu_count of <multiprocessing.context.DefaultContext object at 0x000001F4DB2DF9E0>>
+Numero de clientes: 1
+Numero de linhas: 4
+Numero de colunas: 4
+Tempo de processamento: 0.0 segundos
+
