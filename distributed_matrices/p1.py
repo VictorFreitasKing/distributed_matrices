@@ -1,4 +1,5 @@
 import time, numpy
+from multiprocessing import cpu_count
 from archive import archive, get_rows_from
 from matrix import matrix_to_numpy, get_matrix
 
@@ -21,7 +22,7 @@ def multiply(X: numpy.ndarray, Y: numpy.ndarray):
 
 
 path = 'resources/128.txt'
-result = 'resources/results/p1_teste'
+resultPath = 'resources/results/p1_teste'
 matrix = get_matrix(get_rows_from(path))
 
 print(matrix)
@@ -41,7 +42,7 @@ print(runtime)
 
 print(matrix_result)
 
-archive(result, 'P1\n', f'Numero de cores: Não usa Thread\n',
+archive(resultPath, 'P1\n', f'Numero de cores: {cpu_count()}\n',
     f'Numero de clientes: {1}\n',
     f'Numero de linhas: {matrix_result.shape[0]}\n', f'Numero de colunas: {matrix_result.shape[1]}\n',
     f'Tempo de processamento: {runtime} ms\n', matrix_result)

@@ -1,17 +1,16 @@
 from socket import socket, AF_INET, SOCK_STREAM
 from multiprocessing import Process
-
 import numpy
 
 from archive import *
 from matrix import *
 
-path = 'resources/4_int.txt'
-curret_target = 0
+path = 'resources/10_int.txt'
+curret_target = 2
 connections = []
 count_connections = 0
 
-def create_matrix():
+def create_matrices():
     rows = get_rows_from(path)
     matrix = get_matrix(rows)
 
@@ -24,9 +23,9 @@ def create_matrix():
     matrix1_rows = numpy.array_split(matrix1, curret_target, axis=0)
 
     return matrix1_rows, matrix2
-def broadcast_matrix(matrix1_rows, client):
-    for idx, row in enumerate(matrix1_rows):
-        with connections[idx][0] as conn:
+def broadcast_matrices(matrix1_rows, client):
+    for i, row in enumerate(matrix1_rows):
+        with connections[i][0] as conn:
             conn.sendall((row, client))
 
 def start():
@@ -48,6 +47,9 @@ def start():
 
             if count_connections == curret_target:
                 break
+
+            x, y = create_matrices()
+            broadcast_matrices(x,y)
 
 
 Process(target=start()).start()

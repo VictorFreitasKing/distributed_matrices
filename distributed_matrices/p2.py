@@ -1,16 +1,18 @@
 import time, numpy
-from multiprocessing import cpu_count, pool
+from multiprocessing import cpu_count, Pool
 from archive import archive, get_rows_from
 from matrix import matrix_to_numpy, get_matrix
 
-def multiply(matrices: tuple):
-    columnsX = matrices[0].shape[0]
-    rowsX = matrices[0].shape[1]
-    columnsY = matrices[1].shape[0]
-    rowsY = matrices[1].shape[1]
+def multiply(matrices: tuple)-> numpy.ndarray:
+    X = matrices[0]
+    Y = matrices[1]
+    columnsX = X.shape[0]
+    rowsX = X.shape[1]
+    columnsY = Y.shape[0]
+    rowsY = Y.shape[1]
 
     if rowsX != columnsY:
-        raise 'Erro! A matriz não é quadrada.'
+        print('Erro! A matriz não é quadrada.')
 
     resultado = numpy.zeros((columnsX, rowsY))
     for i in range(columnsX):
@@ -20,42 +22,48 @@ def multiply(matrices: tuple):
 
     return resultado
 
+if __name__ == '__main__':
+    path = 'resources/4_int.txt'
+    resultPath = 'resources/results/p2_teste'
+    num_cores = cpu_count()
+    num_threads = num_cores
 
-path = 'resources/128.txt'
-result = 'resources/results/p1_teste'
-matrix = get_matrix(get_rows_from(path))
-num_cores = cpu_count
-num_threads = num_cores
+    matrix = get_matrix(get_rows_from(path))
+    matrix1 = numpy.zeros((matrix.rows,matrix.columns))
+    matrix2 = numpy.zeros((matrix.rows,matrix.columns))
+    matrix_to_numpy(matrix, matrix1)
+    matrix_to_numpy(matrix, matrix2)
+    matrixRows = numpy.array_split(matrix1, num_threads, axis=0)
+    print(matrixRows)
 
-print(matrix)
+    parts = []
 
-matrix1 = numpy.zeros((matrix.rows,matrix.columns))
-matrix2 = numpy.zeros((matrix.rows,matrix.columns))
+    for i, row in enumerate(matrixRows):
+        parts.append((row, matrix2, i))
 
-matrix_to_numpy(matrix, matrix1)
-matrix_to_numpy(matrix, matrix2)
-
-matrixRows = numpy.array_split(matrix1, num_threads, axis=0)
-
-pieces = []
-for i, row in enumerate(matrixRows):
-    pieces.append((row, matrix2, i))
-
-with Pool
-
-before = time.time()
-matrix_result = multiply(matrix1, matrix2)
-after = time.time()
-runtime = (after - before) * 1000
-print(runtime)
+    print(parts)
 
 
+    with Pool(num_threads) as p:
+        before = time.time()
+        results = p.map(multiply, parts)
+        matrix_result = numpy.zeros((matrix1.shape[0], matrix1.shape[1]))
 
-print(matrix_result)
+        j=0
+        k=0
+        for i, part in enumerate(results):
+            for jp in range(part.shape[0]):
+                for kp in range(part.shape[1]):
+                    matrix_result[j][k] = part[jp][kp]
+                    k += 1
 
-archive(result, 'P1\n', f'Numero de cores: {num_cores}\n',
-    f'Numero de clientes: {1}\n',
-    f'Numero de linhas: {matrix_result.shape[0]}\n', f'Numero de colunas: {matrix_result.shape[1]}\n',
-    f'Tempo de processamento: {runtime} ms\n', matrix_result)
 
-print('Finalizado')
+                k = 0
+                j+=1
+
+        after = time.time()
+        runtime = (after - before) * 1000
+
+    archive(resultPath, 'P1\n', f'Numero de cores: {num_cores}\n',f'Numero de clientes: {1}\n',f'Numero de linhas: {matrix_result.shape[0]}\n', f'Numero de colunas: {matrix_result.shape[1]}\n',f'Tempo de processamento: {runtime} ms\n', matrix_result)
+
+    print('\nProcesso Finalizado')
