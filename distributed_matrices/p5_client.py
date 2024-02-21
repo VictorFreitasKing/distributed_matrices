@@ -24,7 +24,6 @@ def start():
         cs.connect(('localhost', 65432))
         wait = True
         while wait:
-            #file = cs.recv(1024)
             rows = cs.recv(4096)
             rowsconv = numpy.frombuffer(rows)
             print(rowsconv)
