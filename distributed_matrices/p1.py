@@ -22,7 +22,8 @@ def multiply(X: numpy.ndarray, Y: numpy.ndarray):
     return resultado
 
 
-path = 'resources/4_int.txt'
+path = 'resources/128.txt'
+result = 'resources/results/p1_teste'
 matrix = get_matrix(get_rows_from(path))
 num_cores = cpu_count
 
@@ -37,12 +38,15 @@ matrix_to_numpy(matrix, matrix2)
 before = time.time()
 matrix_result = multiply(matrix1, matrix2)
 after = time.time()
-runtime = after - before
+runtime = (after - before) * 1000
+print(runtime)
+
 
 print(matrix_result)
 
-archive('resources/results/p1_teste', 'P1\n', f'Numero de cores: {num_cores}\n',
+archive(result, 'P1\n', f'Numero de cores: {num_cores}\n',
     f'Numero de clientes: {1}\n',
     f'Numero de linhas: {matrix_result.shape[0]}\n', f'Numero de colunas: {matrix_result.shape[1]}\n',
-    f'Tempo de processamento: {runtime} segundos\n', matrix_result)
+    f'Tempo de processamento: {runtime} ms\n', matrix_result)
 
+print('Finalizado')
