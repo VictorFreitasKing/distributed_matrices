@@ -4,7 +4,7 @@ from multiprocessing import Process
 import numpy
 
 from archive import *
-from  matrix import *
+from matrix import *
 
 path = 'resources/4_int.txt'
 curret_target = 0
