@@ -58,7 +58,7 @@ if __name__ == '__main__':
         runtime = (after - before) * 1000
 
     archive(resultPath,
-        'P3\n',
+        'P4\n',
         f'Numero de cores: {num_cores}\n',
         f'Numero de computadores remotos: {0}\n',
         f'Numero de linhas: {matrix_result.shape[0]}\n',
