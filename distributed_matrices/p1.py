@@ -15,7 +15,6 @@ def multiply(X: numpy.ndarray, Y: numpy.ndarray):
 
     resultado = numpy.zeros((columnsX, rowsY))
     for i in range(columnsX):
-        print(i)
         for j in range(rowsY):
             for k in range(rowsX):
                 resultado[i][j] += X[i][k] * Y[k][j]

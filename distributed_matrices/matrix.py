@@ -16,10 +16,9 @@ class Matrix:
     def  __str__(self):
         matrix_str = ''
         for i in range(self.rows):
-            matrix_str += '['
             for j in range(self.columns):
                 matrix_str += str(self.matrix[i][j]) + ' '
-            matrix_str += ']\n'
+            matrix_str += '\n'
         return matrix_str
 
 def matrix_to_numpy(Matrix: Matrix, npMatrix: numpy.array):
