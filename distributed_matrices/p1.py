@@ -21,12 +21,15 @@ def multiply(X: numpy.ndarray, Y: numpy.ndarray):
 
     return resultado
 
+
 path = 'resources/4_int.txt'
 matrix = get_matrix(get_rows_from(path))
 num_cores = cpu_count
 
-matrix1 = numpy.zeros((matrix.columns,matrix.columns))
-matrix2 = numpy.zeros((matrix.columns,matrix.columns))
+print(matrix)
+
+matrix1 = numpy.zeros((matrix.rows,matrix.columns))
+matrix2 = numpy.zeros((matrix.rows,matrix.columns))
 
 matrix_to_numpy(matrix, matrix1)
 matrix_to_numpy(matrix, matrix2)
@@ -38,7 +41,7 @@ runtime = after - before
 
 print(matrix_result)
 
-archive('resources/results/p1', 'P1\n', f'Numero de cores: {num_cores}\n',
+archive('resources/results/p1_teste', 'P1\n', f'Numero de cores: {num_cores}\n',
     f'Numero de clientes: {1}\n',
     f'Numero de linhas: {matrix_result.shape[0]}\n', f'Numero de colunas: {matrix_result.shape[1]}\n',
     f'Tempo de processamento: {runtime} segundos\n', matrix_result)
