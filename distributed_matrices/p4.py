@@ -23,8 +23,8 @@ def multiply(matrices: tuple)-> numpy.ndarray:
     return resultado
 
 if __name__ == '__main__':
-    path = 'resources/10_float.txt'
-    resultPath = 'resources/results/p4_teste'
+    path = 'resources/1024.txt'
+    resultPath = 'resources/results/p4_1024'
     num_cores = cpu_count()
     num_threads = int(num_cores/2)
 

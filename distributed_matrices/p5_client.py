@@ -1,6 +1,7 @@
 from socket import socket, AF_INET, SOCK_STREAM
 from multiprocessing import Process, Pool
 import numpy
+import numpy as np
 
 def multiply(matrices: tuple)-> numpy.ndarray:
     X = matrices[0]

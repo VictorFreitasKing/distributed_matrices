@@ -21,8 +21,8 @@ def multiply(X: numpy.ndarray, Y: numpy.ndarray):
     return resultado
 
 if __name__ == '__main__':
-    path = 'resources/10_float.txt'
-    resultPath = 'resources/results/p1_teste'
+    path = 'resources/512.txt'
+    resultPath = 'resources/results/p1_512'
     matrix = get_matrix(get_rows_from(path))
 
     matrix1 = numpy.zeros((matrix.rows,matrix.columns))
