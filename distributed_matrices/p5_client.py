@@ -1,6 +1,6 @@
 from socket import socket, AF_INET, SOCK_STREAM
-from multiprocessing import Process
-import pickle, numpy
+from multiprocessing import Process, Pool
+import numpy
 
 def multiply(matrices: tuple)-> numpy.ndarray:
     X = matrices[0]
@@ -27,9 +27,12 @@ def start():
         wait = True
         while wait:
             rows = cs.recv(4096)
+            matrix = cs.recv(4096)
             rowsconv = numpy.frombuffer(rows)
-            print(rowsconv)
-            #aqui multiplica
+            matrixconv = numpy.frombuffer(matrix)
+
+            #aqui multiplica - Fazer depois dos graficos para caso n dê tempo
+            total_clients = 2
 
 
 

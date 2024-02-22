@@ -11,7 +11,6 @@ connections_await = 2
 connections = []
 count_connections = 0
 
-
 def parts_generate():
     rows = get_rows_from(path)
     matrix = get_matrix(rows)
@@ -26,22 +25,21 @@ def parts_generate():
 
     return matrix1_rows, matrix2
 
+rows, matrix = parts_generate()
 
 def broadcast_parts(matrix_rows):
-    matrixtemp = numpy.zeros((len(matrix_rows),len(matrix_rows)))
-    parts = []
-    for i, row in enumerate(matrix_rows):
-        parts.append((row, matrixtemp, i))
-
-
+    matrix = numpy.concatenate(matrix_rows)
     for i, rows in enumerate(matrix_rows):
         conn, addr = connections[i]
-        rows = rows.tobytes()
-        conn.send(rows)
+
+        rowss = rows.tobytes()
+        conn.send(rowss)
+        conn.send(matrix)
+
 
 
 def start():
-    global count_connections, connections_await
+    global count_connections, connections_await, rows
     server_socket = socket(AF_INET, SOCK_STREAM)
     print('Servidor iniciado!\n')
     with server_socket as ss:
@@ -58,7 +56,7 @@ def start():
             if count_connections == connections_await:
                 print('Conexões  atingidas')
                 break
-        rows, matrix = parts_generate()
+
         broadcast_parts(rows)
 
 
